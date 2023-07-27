@@ -58,7 +58,7 @@ $(document).ready(function () {
         var refno = $('#refno').val();
         var amount = $('#amount').val();
 
-        if(name == null || refno == null || amount == null) {
+        if(name == '' || refno == '' || amount == '') {
             $('#error').text('Fill up all fields.');
             $('#submit').prop('disabled', true);
         } else {
@@ -80,11 +80,12 @@ $(document).ready(function () {
     */
     $('#cards').on('click', '.remove', function () {
         // your code here
-        var $t = $(this);
-        var refno = $(this).parent().find('p:nth-child(2)').text();
-        $.get('/delete', {refno: refno}, function(flag) {
-            if(flag)
-                $t.parent().remove();
+        var $div = $(this);
+        var refno = $div.parent().find('p:nth-child(2)').text();
+        $.get('/delete', {refno: refno}, function (result) {
+            if(result) {
+                $div.parent().remove();
+            }
         });
     });
 

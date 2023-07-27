@@ -99,11 +99,8 @@ const controller = {
         // your code here
         var refno = req.query.refno;
 
-        var deleteCard = await db.deleteOne(User, refno);
-
-        if(deleteCard != null){
-            res.redirect('/');
-        }
+        var deleteCard = await db.deleteOne(Transaction, {refno: refno});
+        res.send(deleteCard);
     }
 
 }
